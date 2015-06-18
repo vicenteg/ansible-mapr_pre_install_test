@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+/root/cluster-validation-master/pre-install/iozone -t {{mapr_disks|length}} -I -r 1M -s 4G -+n -i 0 -i 1 -i 2 {% for disk in mapr_disks %}-F {{disk}} {% endfor %}
+

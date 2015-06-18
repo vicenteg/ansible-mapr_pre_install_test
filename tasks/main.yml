@@ -1,0 +1,13 @@
+---
+# tasks file for mapr_pre_install_test
+- name: get cluster-validation
+  get_url: url=https://github.com/jbenninghoff/cluster-validation/archive/master.zip dest=/tmp/master.zip
+
+- name: unpack cluster-validation
+  command: chdir=/root unzip -u /tmp/master.zip
+
+- name: create script for iozone raw disk test
+  template: src=iozone.sh.j2 dest=/tmp/iozone.sh mode=0755 owner=root group=root
+
+- name: run iozone script
+  command: chdir=/tmp /tmp/iozone.sh 
